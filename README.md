@@ -21,3 +21,12 @@ A dynamic Streamlit dashboard to analyze employee attendance compliance across s
 
    ```bash
    pip install streamlit pandas openpyxl xlsxwriter
+
+
+2. **Run the app:**
+
+   ```bash
+   streamlit run app.py
+   ```
+
+---
