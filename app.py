@@ -4,7 +4,7 @@ from io import BytesIO
 import calendar
 from datetime import datetime
 
-st.set_page_config(layout="wide")
+st.set_page_config(page_title="Attendance Compliance",layout="wide",page_icon="https://media.licdn.com/dms/image/v2/D4D0BAQFSLuRei6pVZA/company-logo_200_200/B4DZfJuCNfGgAI-/0/1751435978200/themathcompany_logo?e=1756944000&v=beta&t=CkeqG4ihtOep-IGUMLTLMItiVdFJ4-TroEeSoXs1Jxw")
 
 st.markdown("""
     <style>
@@ -43,7 +43,7 @@ st.markdown("""
 #     <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/MathCo_Logo.png" class="fixed-logo">
 # """, unsafe_allow_html=True)
 
-st.title("📊 Attendance Compliance Dashboard")
+st.title("📊 Attendance Compliance")
 
 uploaded_file = st.file_uploader("**Upload the Excel File**", type=["xlsx"])
 
@@ -141,13 +141,11 @@ if uploaded_file:
 
         final_column_list = list(df.columns[:12]) + list(selected_columns)
         df = df[final_column_list]
+        
     else:
         st.error(f"❌ The date columns `{start_col}` and/or `{end_col}` were not found in the selected sheet: `{selected_sheet}`.")
         st.stop()
 
-
-    # Slice the columns (inclusive)
-    selected_columns = df.iloc[:, start_idx:end_idx+1].columns # type: ignore
 
     final_column_list=[]
     for i in df.columns[:12]:
@@ -159,6 +157,7 @@ if uploaded_file:
     df=df[final_column_list]
 
     df=df[df["Status"]=="Active"]
+    
 
     try:
         df["Accounts"].replace("Mathapps","MathApps",inplace=True)
