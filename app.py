@@ -4,37 +4,8 @@ from io import BytesIO
 import calendar
 from datetime import datetime
 
-st.set_page_config(page_title="Attendance Compliance",layout="wide",page_icon="https://media.licdn.com/dms/image/v2/D4D0BAQFSLuRei6pVZA/company-logo_200_200/B4DZfJuCNfGgAI-/0/1751435978200/themathcompany_logo?e=1756944000&v=beta&t=CkeqG4ihtOep-IGUMLTLMItiVdFJ4-TroEeSoXs1Jxw")
+st.set_page_config(page_title="MathCO PSO Automate360",layout="wide",page_icon="https://media.licdn.com/dms/image/v2/D4D0BAQFSLuRei6pVZA/company-logo_200_200/B4DZfJuCNfGgAI-/0/1751435978200/themathcompany_logo?e=1756944000&v=beta&t=CkeqG4ihtOep-IGUMLTLMItiVdFJ4-TroEeSoXs1Jxw")
 
-# st.markdown("""
-#     <style>
-#     /* Background and layout */
-#     .stApp {
-#         background-color: #ebe3d6;
-#     }
-
-#     /* Push content to the right */
-#     .block-container {
-#         padding-left: 180px;  /* Adjust based on logo width */
-#     }
-
-#     /* Fixed logo in top-left corner */
-#     .fixed-logo {
-#         position: fixed;
-#         top: 20px;
-#         left: 20px;
-#         width: 140px;
-#         z-index: 1000;
-#         background-color: white;
-#         padding: 5px;
-#         border-radius: 8px;
-#         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-#     </style>
-
-#     <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/MathCo_Logo.png" class="fixed-logo">
-# """, unsafe_allow_html=True)
-
-# Put this before st.title()
 st.markdown("""
     <style>
     /* Remove default Streamlit padding from top */
@@ -78,7 +49,7 @@ st.markdown("""
 #     <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/MathCo_Logo.png" class="fixed-logo">
 # """, unsafe_allow_html=True)
 
-st.title("📊 Attendance Compliance")
+st.title("📊 PSO Automate360 - Attendance Compliance")
 
 uploaded_file = st.file_uploader("**Upload the Excel File**", type=["xlsx"])
 
