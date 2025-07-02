@@ -158,6 +158,8 @@ if uploaded_file:
 
     df=df[final_column_list]
 
+    df=df[df["Status"]=="Active"]
+    
     try:
         df["Accounts"].replace("Mathapps","MathApps",inplace=True)
     except:
@@ -183,6 +185,13 @@ if uploaded_file:
         axis=1
     )
 
+    # Step 2: Count "L" or "WFH" per row in those columns
+    df['L_WFH_Count'] = df[attendance_day_cols].apply(
+        lambda row: sum(str(val).strip().upper() in ['L', 'WFH'] for val in row),
+        axis=1
+    )
+
+    df["Total Attendance (Without L/WFH)"]=df["Adjusted Attendance"]-df["L_WFH_Count"]
     # === Excel Writer with formatting and chart ===
     output = BytesIO()
     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
