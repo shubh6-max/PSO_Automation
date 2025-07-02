@@ -13,35 +13,35 @@ st.set_page_config(
     page_icon="https://media.licdn.com/dms/image/v2/D4D0BAQHV_-WdH8NGCw/company-logo_200_200/B4DZdoK0PjHkAM-/0/1749799355979/themathcompany_logo?e=1756944000&v=beta&t=3N3rldQGIH1FsqUhgbyI2qnELA8Txh4ZJvHFtbNeRhQ"
     )
 
-# Inject custom CSS
 st.markdown("""
     <style>
     /* Set background for main container */
-    .stApp {{
-        background-color: #252526;  /* Light bluish-gray */
-    }}
+    .stApp {
+        background-color: #ebe3d6;
+        margin-left: 0px;
+    }
 
-    /* Fixed image in top-left corner */
     .fixed-logo {
         position: fixed;
-        top: 30px;
-        left: 30px;
+        top: 20px;
+        left: 20px;
+        width: 150px;
         z-index: 9999;
-        width: 200px;
-        height: auto;
-    }
-
-    /* Push content slightly to the right if needed */
-    .main > div {
-        padding-left: 140px;
+        background-color: white;
+        padding: 5px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     </style>
-""", unsafe_allow_html=True)
-
-# Add image in top-left corner using HTML
-st.markdown("""
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/MathCo_Logo.png" class="fixed-logo">
 """, unsafe_allow_html=True)
+
+
+
+# # Add image in top-left corner using HTML
+# st.markdown("""
+#     <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/MathCo_Logo.png" class="fixed-logo">
+# """, unsafe_allow_html=True)
 
 st.title("📊 Attendance Compliance Dashboard")
 
@@ -159,7 +159,7 @@ if uploaded_file:
     df=df[final_column_list]
 
     df=df[df["Status"]=="Active"]
-    
+
     try:
         df["Accounts"].replace("Mathapps","MathApps",inplace=True)
     except:
