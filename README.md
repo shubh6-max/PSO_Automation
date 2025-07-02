@@ -15,12 +15,6 @@ A dynamic Streamlit dashboard to analyze employee attendance compliance across s
 
 ---
 
-## 🖼️ UI Preview
-
-![App Preview](https://media.licdn.com/dms/image/v2/D4D0BAQHV_-WdH8NGCw/company-logo_200_200/B4DZdoK0PjHkAM-/0/1749799355979/themathcompany_logo?e=1756944000&v=beta&t=3N3rldQGIH1FsqUhgbyI2qnELA8Txh4ZJvHFtbNeRhQ)
-
----
-
 ## 🚀 How to Run
 
 1. **Install requirements:**
