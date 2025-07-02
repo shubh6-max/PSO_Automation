@@ -6,35 +6,35 @@ from datetime import datetime
 
 st.set_page_config(layout="wide")
 
-# Set page config
-st.set_page_config(
-    page_title="Attendance Compliance Dashboard",
-    layout="wide",
-    page_icon="https://media.licdn.com/dms/image/v2/D4D0BAQHV_-WdH8NGCw/company-logo_200_200/B4DZdoK0PjHkAM-/0/1749799355979/themathcompany_logo?e=1756944000&v=beta&t=3N3rldQGIH1FsqUhgbyI2qnELA8Txh4ZJvHFtbNeRhQ"
-    )
-
 st.markdown("""
     <style>
-    /* Set background for main container */
+    /* Background and layout */
     .stApp {
         background-color: #ebe3d6;
-        margin-left: 0px;
     }
 
+    /* Push content to the right */
+    .block-container {
+        padding-left: 180px;  /* Adjust based on logo width */
+    }
+
+    /* Fixed logo in top-left corner */
     .fixed-logo {
         position: fixed;
         top: 20px;
         left: 20px;
-        width: 150px;
-        z-index: 9999;
+        width: 140px;
+        z-index: 1000;
         background-color: white;
         padding: 5px;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     </style>
+
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/MathCo_Logo.png" class="fixed-logo">
 """, unsafe_allow_html=True)
+
 
 
 
