@@ -166,7 +166,13 @@ if uploaded_file:
     
 
     try:
-        df["Accounts"].replace("Mathapps","MathApps",inplace=True)
+        df["Accounts"].replace(
+            {
+            "Mathapps": "MathApps",
+            "IT Infosec": "IT InfoSec"
+            },
+            inplace=True)
+
     except:
         print("Select sheet")
 
@@ -229,8 +235,8 @@ if uploaded_file:
                 Non_Compliant_Count=('Non_Compliant', 'sum')
             ).reset_index()
 
-            summary['Compliance %'] = (summary['Non_Compliant_Count'] / summary['Count_of_Emp']).apply(lambda x: f"{x:.0%}")
-            summary['% Non-compliance'] = (summary['Compliant_Count'] / summary['Count_of_Emp']).apply(lambda x: f"{x:.0%}")
+            summary['Compliance %'] = (summary['Compliant_Count'] / summary['Count_of_Emp']).apply(lambda x: f"{x:.0%}")
+            summary['% Non-compliance'] =  (summary['Non_Compliant_Count'] / summary['Count_of_Emp']).apply(lambda x: f"{x:.0%}")
 
             grand_total = pd.DataFrame({
                 'Accounts': ['Grand Total'],
@@ -262,32 +268,32 @@ if uploaded_file:
                     summary_ws.write(start_row + 2 + row_num, right_col + col_num, final_summary.iloc[row_num, col_num], cell_format)
 
             # Chart
-            buckets = {
-                "<=50%": final_summary[final_summary['Compliance %'].str.rstrip('%').astype(float) <= 50].shape[0],
-                "50% - 75%": final_summary[
-                    (final_summary['Compliance %'].str.rstrip('%').astype(float) > 50) &
-                    (final_summary['Compliance %'].str.rstrip('%').astype(float) <= 75)
-                ].shape[0],
-                "Above 75%": final_summary[final_summary['Compliance %'].str.rstrip('%').astype(float) > 75].shape[0]
-            }
+            # buckets = {
+            #     "<=50%": final_summary[final_summary['Compliance %'].str.rstrip('%').astype(float) <= 50].shape[0],
+            #     "50% - 75%": final_summary[
+            #         (final_summary['Compliance %'].str.rstrip('%').astype(float) > 50) &
+            #         (final_summary['Compliance %'].str.rstrip('%').astype(float) <= 75)
+            #     ].shape[0],
+            #     "Above 75%": final_summary[final_summary['Compliance %'].str.rstrip('%').astype(float) > 75].shape[0]
+            # }
 
-            chart_data_row = start_row + 2 + max(len(pivot), len(final_summary)) + 2
-            summary_ws.write_row(chart_data_row, right_col, ['Compliance Band', 'Count'])
-            for i, (band, count) in enumerate(buckets.items(), start=1):
-                summary_ws.write_row(chart_data_row + i, right_col, [band, count])
+            # chart_data_row = start_row + 2 + max(len(pivot), len(final_summary)) + 2
+            # summary_ws.write_row(chart_data_row, right_col, ['Compliance Band', 'Count'])
+            # for i, (band, count) in enumerate(buckets.items(), start=1):
+            #     summary_ws.write_row(chart_data_row + i, right_col, [band, count])
 
-            chart = workbook.add_chart({'type': 'column'})  # type: ignore # Vertical bars
-            chart.add_series({
-                'name': 'Compliance Status',
-                'categories': ["Summary", chart_data_row + 1, right_col, chart_data_row + 3, right_col],
-                'values': ["Summary", chart_data_row + 1, right_col + 1, chart_data_row + 3, right_col + 1],
-                'fill': {'color': '#2F75B5'}
-            })
-            chart.set_title({'name': f'{service_line} Compliance Status'})
-            chart.set_x_axis({'name': 'Compliance Band'})
-            chart.set_y_axis({'name': 'Count'})  # Normal Y-axis (not reversed)
-            chart.set_style(10)
-            summary_ws.insert_chart(chart_data_row + 1, right_col + 3, chart)
+            # chart = workbook.add_chart({'type': 'column'})  # type: ignore # Vertical bars
+            # chart.add_series({
+            #     'name': 'Compliance Status',
+            #     'categories': ["Summary", chart_data_row + 1, right_col, chart_data_row + 3, right_col],
+            #     'values': ["Summary", chart_data_row + 1, right_col + 1, chart_data_row + 3, right_col + 1],
+            #     'fill': {'color': '#2F75B5'}
+            # })
+            # chart.set_title({'name': f'{service_line} Compliance Status'})
+            # chart.set_x_axis({'name': 'Compliance Band'})
+            # chart.set_y_axis({'name': 'Count'})  # Normal Y-axis (not reversed)
+            # chart.set_style(10)
+            # summary_ws.insert_chart(chart_data_row + 1, right_col + 3, chart)
 
 
             start_row += max(len(pivot), len(final_summary)) + 6 + 4
@@ -314,8 +320,10 @@ if uploaded_file:
             Compliant_Count=('Compliant', 'sum'),
             Non_Compliant_Count=('Non_Compliant', 'sum')
         ).reset_index()
-        org_summary['% Non-compliance'] = (org_summary['Non_Compliant_Count'] / org_summary['Count_of_Emp']).apply(lambda x: f"{x:.0%}")
+
         org_summary['Compliance %'] = (org_summary['Compliant_Count'] / org_summary['Count_of_Emp']).apply(lambda x: f"{x:.0%}")
+        org_summary['% Non-compliance'] = (org_summary['Non_Compliant_Count'] / org_summary['Count_of_Emp']).apply(lambda x: f"{x:.0%}")
+        
 
         grand_total = pd.DataFrame({
             'Service Line': ['Grand Total'],
